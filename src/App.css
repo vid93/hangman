@@ -3,22 +3,25 @@
 }
 
 .word {
-  margin-left: 15%;
-  margin-top: 40%;
+  margin-left: 30%;
+  margin-top: 0px;
   width: 70%;
   font-size: xx-large;
+  display: flex;
 }
 
 .hangman {
-  size: 50%;
+  display: flex;
+  width: 30%;
+  height: 20%;
 }
 
 .letter {
   border-bottom: 3px solid #2980b9;
-  display: inline-flex;
+  display: flex;
   font-size: xx-large;
-  align-items: center;
-  justify-content: center;
+  align-items: right;
+  justify-content: right;
   margin: 0 3px;
   height: 10%;
   width: 10%;

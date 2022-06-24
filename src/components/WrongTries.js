@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
 
-const WrongTries = () => {
+const WrongTries = ({ wrongLetters }) => {
   return (
-    <div className='wrongTries'>WrongTries</div>
-  )
-}
+    <div className="wrongTries">
+      <h2>WrongTries</h2>
+      {wrongLetters.map((letter, index) => {
+        return(
+            <span key={index}>{letter}, </span>
+        )
+      })}
+    </div>
+  );
+};
 
-export default WrongTries
+export default WrongTries;

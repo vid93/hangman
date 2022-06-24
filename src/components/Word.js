@@ -2,13 +2,16 @@ import React, { useEffect } from "react";
 import axios from "axios";
 
 const Word = ({ setWord, word, correctLetters }) => {
-  const length = Math.floor(Math.random() * 5) + 4
+
   useEffect(() => {
-    axios.get(`https://random-word-api.herokuapp.com/word?length=${length}`).then((res) => {
-      setWord(res.data[0]);
-    });
-    // eslint-disable-next-line
-  }, []);
+
+    const length = Math.floor(Math.random() * 5) + 4
+      axios.get(`https://random-word-api.herokuapp.com/word?length=${length}`).then((res) => {
+        setWord(res.data[0]);
+      });
+      // eslint-disable-next-line
+    }, []);
+
 
   return (
     <div className="word">
@@ -22,5 +25,6 @@ const Word = ({ setWord, word, correctLetters }) => {
     </div>
   );
 };
+
 
 export default Word;

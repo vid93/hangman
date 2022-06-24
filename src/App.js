@@ -4,11 +4,13 @@ import "./App.css";
 import Word from "./components/Word";
 import Hangman from "./components/Hangman";
 import WrongTries from "./components/WrongTries";
+import Modal from "./components/Modal";
 
 function App() {
   const [word, setWord] = useState("");
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
+  const [gameDone, setGameDone] = useState(true);
 
   useEffect(() => {
     const keyPress = (event) => {
@@ -39,9 +41,17 @@ function App() {
   return (
     <div className="App">
       <h1>Hangman</h1>
-      <Hangman />
+      <Hangman wrongLetters={wrongLetters} />
       <Word setWord={setWord} word={word} correctLetters={correctLetters} />
-      <WrongTries />
+      <WrongTries wrongLetters={wrongLetters} />
+      <Modal
+        gameDone={gameDone}
+        setGameDone={setGameDone}
+        setCorrectLetters={setCorrectLetters}
+        setWrongLetters={setWrongLetters}
+        word={word}
+        setWord={setWord}
+      />
     </div>
   );
 }
