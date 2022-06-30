@@ -5,12 +5,22 @@ import Word from "./components/Word";
 import Hangman from "./components/Hangman";
 import WrongTries from "./components/WrongTries";
 import Modal from "./components/Modal";
+import Header from "./components/Header";
+import Message from "./components/Message";
 
 function App() {
   const [word, setWord] = useState("");
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
-  const [gameDone, setGameDone] = useState(true);
+  const [gameDone, setGameDone] = useState(false);
+  const [show, setShow] = useState(false)
+
+  const showMessage = (setShow) => {
+    setShow(true)
+    setTimeout(() => {
+      setShow(false)
+    }, 2000);
+  }
 
   useEffect(() => {
     const keyPress = (event) => {
@@ -23,13 +33,13 @@ function App() {
           if (!correctLetters.includes(letter)) {
             setCorrectLetters((current) => [...current, letter]);
           } else {
-            // notify user already used that letter
+            showMessage(setShow)
           }
         } else {
           if (!wrongLetters.includes(letter)) {
             setWrongLetters((current) => [...current, letter]);
           } else {
-            // notify user already used that letter
+            showMessage(setShow)
           }
         }
       }
@@ -40,11 +50,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hangman</h1>
+      <Header/>
       <Hangman wrongLetters={wrongLetters} />
       <Word setWord={setWord} word={word} correctLetters={correctLetters} />
       <WrongTries wrongLetters={wrongLetters} />
       <Modal
+        correctLetters={correctLetters}
+        wrongLetters={wrongLetters}
         gameDone={gameDone}
         setGameDone={setGameDone}
         setCorrectLetters={setCorrectLetters}
@@ -52,6 +64,7 @@ function App() {
         word={word}
         setWord={setWord}
       />
+      <Message show={show}/>
     </div>
   );
 }
